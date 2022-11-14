@@ -1,6 +1,13 @@
 /node_modules
 package-lock.json
 
+# Playwright
+/test-results/
+/tests/example.spec.ts
+/tests-examples/
+/playwright-report/
+/playwright/.cache/
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
