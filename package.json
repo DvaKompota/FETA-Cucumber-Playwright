@@ -1,0 +1,28 @@
+{
+  "name": "feta-playwright",
+  "version": "1.0.0",
+  "description": "<br/>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DvaKompota/FETA-Playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DvaKompota/FETA-Playwright/issues"
+  },
+  "homepage": "https://github.com/DvaKompota/FETA-Playwright#readme",
+  "dependencies": {
+    "@cucumber/cucumber": "^8.7.0",
+    "@playwright/test": "^1.27.1",
+    "chai": "^4.3.7",
+    "playwright": "^1.27.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
+  }
+}
