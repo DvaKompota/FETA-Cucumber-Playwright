@@ -2,7 +2,6 @@
 
 # Playwright
 /test-results/
-/tests/example.spec.ts
 /tests-examples/
 /playwright-report/
 /playwright/.cache/
