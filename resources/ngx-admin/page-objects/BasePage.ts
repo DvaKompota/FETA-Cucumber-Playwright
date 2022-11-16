@@ -10,6 +10,8 @@ export class BasePage {
 
   async visit() {
     await this.page.goto(this.URL);
+    await this.page.waitForLoadState('load');
+    await this.page.waitForLoadState('networkidle');
   }
 
   async pause(seconds: number) {

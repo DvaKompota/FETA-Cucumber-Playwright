@@ -13,7 +13,6 @@ test.describe('Validate Home Page loads correctly in all resolutions', () => {
         await homePage.setDesktopViewport(); // Full HD
         await homePage.visit();
         await homePage.hasProperURL();
-        await homePage.hasProperURL();
         await topPanel.logoIsVisible();
         await topPanel.navToggleIsVisible();
         await leftNav.allMenuIconsVisible();
@@ -26,7 +25,6 @@ test.describe('Validate Home Page loads correctly in all resolutions', () => {
         const leftNav = new LeftNav(page);
         await homePage.setLaptopViewport(); // macbook-13
         await homePage.visit();
-        await homePage.hasProperURL();
         await homePage.hasProperURL();
         await topPanel.logoIsVisible();
         await topPanel.navToggleIsVisible();
@@ -41,7 +39,6 @@ test.describe('Validate Home Page loads correctly in all resolutions', () => {
         await homePage.setTabletViewport(); // iPad
         await homePage.visit();
         await homePage.hasProperURL();
-        await homePage.hasProperURL();
         await topPanel.logoIsVisible();
         await topPanel.navToggleIsVisible();
         await leftNav.allMenuIconsVisible();
@@ -54,7 +51,6 @@ test.describe('Validate Home Page loads correctly in all resolutions', () => {
         const leftNav = new LeftNav(page);
         await homePage.setMobileViewport(); // iPhone X
         await homePage.visit();
-        await homePage.hasProperURL();
         await homePage.hasProperURL();
         await topPanel.logoIsVisible();
         await topPanel.navToggleIsVisible();
