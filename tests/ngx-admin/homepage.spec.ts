@@ -4,7 +4,7 @@ import { TopPanel } from '../../resources/ngx-admin/page-objects/components/TopP
 import { HomePage } from '../../resources/ngx-admin/page-objects/HomePage';
 
 
-test.describe.skip('Validate Home Page loads correctly in all resolutions', () => {
+test.describe('Validate Home Page loads correctly in all resolutions', () => {
     
     test('Validate Home Page loads correctly in full HD resolution', async ({ page }) => {
         const homePage = new HomePage(page);

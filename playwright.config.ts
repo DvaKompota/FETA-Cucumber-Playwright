@@ -11,7 +11,7 @@ import { devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
-  testDir: './tests',
+  testDir: process.env.CI ? './tests-examples' : './tests',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -36,7 +36,7 @@ const config: PlaywrightTestConfig = {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://localhost:3000',
+    baseURL: process.env.CI ? undefined : 'http://localhost:4200',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -100,10 +100,12 @@ const config: PlaywrightTestConfig = {
   // outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   port: 3000,
-  // },
+  webServer: process.env.CI ? undefined : {
+    command: 'cd .. && ng serve && cd FETA-Playwright/',
+    url: 'http://localhost:4200',
+    timeout: 120 * 1000,
+    reuseExistingServer: !process.env.CI,
+  },
 };
 
 export default config;

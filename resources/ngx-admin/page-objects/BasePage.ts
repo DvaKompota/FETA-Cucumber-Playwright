@@ -2,7 +2,7 @@ import { expect, Page } from '@playwright/test';
 
 export class BasePage {
   readonly page: Page;
-  URL: string = "http://localhost:4200/";
+  URL: string = "";
 
   constructor(page: Page) {
     this.page = page;
