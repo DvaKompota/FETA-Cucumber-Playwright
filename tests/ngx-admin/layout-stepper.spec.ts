@@ -4,7 +4,7 @@ import { StepperPage } from '../../resources/ngx-admin/page-objects/StepperPage'
 
 test.describe('Layout Stepper validation', () => {
     
-    test.only('Validate page happy elements', async ({ page }) => {
+    test('Validate page happy elements', async ({ page }) => {
         const stepperPage = new StepperPage(page);
         await stepperPage.visit();
         await stepperPage.hasProperURL();
