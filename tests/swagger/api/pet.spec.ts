@@ -18,6 +18,19 @@ test.describe('Pet API testing', () => {
         expect (responseBody.status).toBe(payload.status)
     });
 
+    test('Add a new pet to the store: POST /pet', async ({ request }) => {
+        const uri:string = `pet`;
+        const payload: Pet = await generatePetObject();
+        const response = await request.post(`${baseURL}/${uri}`, { data: payload });
+        expect (response.status()).toBe(200);
+        const responseBody = JSON.parse(await response.text())
+        expect (responseBody.id).toBe(payload.id)
+        expect (responseBody.category.id).toBe(payload.category.id)
+        expect (responseBody.category.name).toBe(payload.category.name)
+        expect (responseBody.name).toBe(payload.name)
+        expect (responseBody.status).toBe(payload.status)
+    });
+
 });
 
 async function generatePetObject(): Promise<Pet> {
