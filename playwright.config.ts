@@ -11,7 +11,7 @@ import { devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
-  testDir: process.env.CI ? './tests-examples' : './tests',
+  testDir: process.env.CI ? './tests-examples' : './src/tests',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -101,12 +101,12 @@ const config: PlaywrightTestConfig = {
   // outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
-  // webServer: process.env.CI ? undefined : {
-  //   command: 'cd .. && ng serve && cd FETA-Playwright/',
-  //   url: 'http://localhost:4200',
-  //   timeout: 120 * 1000,
-  //   reuseExistingServer: !process.env.CI,
-  // },
+  webServer: process.env.CI ? undefined : {
+    command: 'cd .. && ng serve && cd FETA-Playwright/',
+    url: 'http://localhost:4200',
+    timeout: 120 * 1000,
+    reuseExistingServer: !process.env.CI,
+  },
 };
 
 export default config;

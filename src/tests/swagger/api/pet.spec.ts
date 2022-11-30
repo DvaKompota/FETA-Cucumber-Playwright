@@ -31,6 +31,20 @@ test.describe('Pet API testing', () => {
         expect (responseBody.status).toBe(payload.status)
     });
 
+    // test('Update an existing pet: PUT /pet', async ({ request }) => {
+    //     // const response = page.getByPlaceholder('What needs to be done?');
+
+    // });
+
+    // test('Find Pets by status: GET /pet/findByStatus', async ({ request }) => {
+    //     // const response = page.getByPlaceholder('What needs to be done?');
+
+    // });
+
+    // test('Find Pets by tags: GET /pet/findByTags', async ({ request }) => {
+    //     // const response = page.getByPlaceholder('What needs to be done?');
+
+    // });
 });
 
 async function generatePetObject(): Promise<Pet> {
