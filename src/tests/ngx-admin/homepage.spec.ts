@@ -55,6 +55,6 @@ test.describe('Validate Home Page loads correctly in all resolutions', () => {
         await topPanel.logoIsVisible();
         await topPanel.navToggleIsVisible();
         await leftNav.allMenuIconsNotVisible();
-        //   await leftNav.allMenuTitlesNotVisible(); // fails because titles are technically visible
+        // await leftNav.allMenuTitlesNotVisible(); // fails because titles are technically visible
     });
 });
