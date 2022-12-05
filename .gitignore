@@ -1,8 +1,8 @@
 /node_modules
 
 # Playwright
-/test-results/
-/playwright-report/
+/reports/
+/dist/
 /playwright/.cache/
 
 # IDE - VSCode

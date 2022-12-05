@@ -1,0 +1,5 @@
+{
+    "cucumberautocomplete.steps": ["./src/tests/**/step-definitions/**/*.ts"],
+    "cucumberautocomplete.syncfeatures": "./src/tests/**/features/*.feature",
+    "git.ignoreLimitWarning": true,
+}
