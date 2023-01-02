@@ -1,5 +1,7 @@
 {
     "playground header": ".playground-header",
+    "female radio label": "[data-id='female-radio-button']",
     "female radio button": "[data-id='female-radio-button'] input",
+    "male radio label": "[data-id='male-radio-button']",
     "male radio button": "[data-id='male-radio-button'] input"
 }
