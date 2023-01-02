@@ -21,3 +21,11 @@ export const uncheckElement = async (
 ): Promise<void> => {
     await page.uncheck(elementIdentifier)
 };
+
+export const typeText = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+    textInput: string,
+): Promise<void> => {
+    await page.type(elementIdentifier, textInput)
+};
