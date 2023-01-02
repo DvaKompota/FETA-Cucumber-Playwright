@@ -13,7 +13,7 @@ When(
             globalConfig,
         } = this;
     
-        console.log(`I click the ${elementKey} (?:button|link|icon|element)`);
+        console.log(`I click the ${elementKey} button|link|icon|element`);
 
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
 
