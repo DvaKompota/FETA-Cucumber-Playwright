@@ -5,20 +5,20 @@ import { getElementLocator } from '../../../../resources/common/web-element-help
 import { waitFor } from '../../../../resources/common/wait-for-behavior';
 
 Then(
-    /^the "([^"]*)" should contain the text "([^"]*)"$/,
-    async function( this: ScenarioWorld, elementKey: ElementKey, expectedElementText: string ) {
+    /^the "([^"]*)" should (not )?contain the text "([^"]*)"$/,
+    async function( this: ScenarioWorld, elementKey: ElementKey, expectedElementText: string, negate: boolean  ) {
         const {
             screen: { page },
             globalConfig,
         } = this;
 
-        console.log(`the ${elementKey} should contain the text ${expectedElementText}`);
+        console.log(`the ${elementKey} should ${negate?'not ':''}contain the text ${expectedElementText}`);
 
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
 
         await waitFor( async () => {
             const elementText: string | null = await page.textContent(elementIdentifier);
-            return elementText?.includes(expectedElementText);
+            return elementText?.includes(expectedElementText) === !negate;
         });
 
     }
