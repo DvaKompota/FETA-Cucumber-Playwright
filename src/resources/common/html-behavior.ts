@@ -7,3 +7,17 @@ export const clickElement = async (
 ): Promise<void> => {
     await page.click(elementIdentifier)
 };
+
+export const checkElement = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+): Promise<void> => {
+    await page.check(elementIdentifier)
+};
+
+export const uncheckElement = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+): Promise<void> => {
+    await page.uncheck(elementIdentifier)
+};
