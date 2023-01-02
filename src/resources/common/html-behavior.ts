@@ -29,3 +29,11 @@ export const typeText = async (
 ): Promise<void> => {
     await page.type(elementIdentifier, textInput)
 };
+
+export const selectOptionFromMenu = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+    option: string,
+): Promise<void> => {
+    await page.selectOption(elementIdentifier, option)
+};
