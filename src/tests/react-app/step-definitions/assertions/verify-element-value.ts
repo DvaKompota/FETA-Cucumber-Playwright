@@ -6,7 +6,7 @@ import { waitFor } from '../../../../resources/common/wait-for-behavior';
 
 Then(
     /^the "([^"]*)" should (not )?contain the text "([^"]*)"$/,
-    async function( this: ScenarioWorld, elementKey: ElementKey, expectedElementText: string, negate: boolean  ) {
+    async function( this: ScenarioWorld, elementKey: ElementKey, negate: boolean, expectedElementText: string ) {
         const {
             screen: { page },
             globalConfig,
