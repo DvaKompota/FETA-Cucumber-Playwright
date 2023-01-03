@@ -6,14 +6,19 @@ import { getElementLocator } from '../../../resources/common/web-element-helper'
 import { typeText } from '../../../resources/common/html-behavior';
 
 When(
-    /^I fill the "([^"]*)" input with the "(.*)" text$/,
-    async function( this: ScenarioWorld, elementKey: ElementKey, textInput: string ) {
+    /^I fill the "([^"]*)" ([a-z]* )?with the "(.*)" text$/,
+    async function(
+        this: ScenarioWorld,
+        elementKey: ElementKey, 
+        elementType: string,
+        textInput: string 
+    ) {
         const {
             screen: { page },
             globalConfig,
         } = this;
     
-        console.log(`I fill the ${elementKey} input with the "${textInput}" text`);
+        console.log(`I fill the ${elementKey} ${elementType?elementType:''}with the "${textInput}" text`);
 
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
 
