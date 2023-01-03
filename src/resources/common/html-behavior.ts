@@ -37,3 +37,10 @@ export const selectOptionFromMenu = async (
 ): Promise<void> => {
     await page.selectOption(elementIdentifier, option)
 };
+
+export const getValue = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+): Promise<string | null> => {
+    return await page.getAttribute(elementIdentifier, "value")
+};
