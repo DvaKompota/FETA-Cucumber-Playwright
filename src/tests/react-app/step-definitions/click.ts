@@ -6,14 +6,14 @@ import { waitFor } from '../../../resources/common/wait-for-behavior';
 import { getElementLocator } from '../../../resources/common/web-element-helper';
 
 When(
-    /^I click the "([^"]*)" (?:button|link|icon|element)$/,
-    async function( this: ScenarioWorld, elementKey: ElementKey ) {
+    /^I click the "([^"]*)"( [a-z]*)?$/,
+    async function( this: ScenarioWorld, elementKey: ElementKey, elementType: string ) {
         const {
             screen: { page },
             globalConfig,
         } = this;
     
-        console.log(`I click the ${elementKey} button|link|icon|element`);
+        console.log(`I click the ${elementKey}${elementType?elementType:''}`);
 
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
 
@@ -21,6 +21,31 @@ When(
             const result = await page.waitForSelector(elementIdentifier, { state: 'visible' });
             if (result) {
                 await clickElement(page, elementIdentifier);
+            }
+            return result;
+        });
+
+    }
+)
+
+When(
+    /^I click the "([^"]*)" containing the "(.*)" text$/,
+    async function( this: ScenarioWorld, elementKey: ElementKey, elementText: string ) {
+        const {
+            screen: { page },
+            globalConfig,
+        } = this;
+    
+        console.log(`I click the ${elementKey} containing the "${elementText}" text`);
+
+        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        const selectorWithText: string = `${elementIdentifier}:has-text("${elementText}")`;
+
+        await waitFor( async () => {
+            const result = await page.waitForSelector(selectorWithText, { state: 'visible' });
+            if (result) {
+                await clickElement(page, selectorWithText);
             }
             return result;
         });
