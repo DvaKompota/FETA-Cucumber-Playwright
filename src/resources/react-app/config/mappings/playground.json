@@ -3,5 +3,8 @@
     "female radio label": "[data-id='female-radio-button']",
     "female radio button": "[data-id='female-radio-button'] input",
     "male radio label": "[data-id='male-radio-button']",
-    "male radio button": "[data-id='male-radio-button'] input"
+    "male radio button": "[data-id='male-radio-button'] input",
+    "movies": "#movies-input",
+    "movies list": "ul#movies-input-listbox",
+    "movies list item": "ul#movies-input-listbox li"
 }
