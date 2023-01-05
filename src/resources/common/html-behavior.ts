@@ -22,6 +22,13 @@ export const uncheckElement = async (
     await page.uncheck(elementIdentifier)
 };
 
+export const clearText = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+): Promise<void> => {
+    await page.locator(elementIdentifier).clear()
+};
+
 export const typeText = async (
     page: Page,
     elementIdentifier: ElementLocator,
