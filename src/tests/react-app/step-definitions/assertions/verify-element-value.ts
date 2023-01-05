@@ -82,3 +82,28 @@ Then(
 
     }
 )
+
+Then(
+    /^the "([^"]*)" ([a-z]* )?should (not )?be enabled$/,
+    async function(
+        this: ScenarioWorld,
+        elementKey: ElementKey, 
+        elementType: string,
+        negate: boolean 
+    ) {
+        const {
+            screen: { page },
+            globalConfig,
+        } = this;
+
+        console.log(`the ${elementKey} ${elementType?elementType:''}should ${negate?'not ':''}be enabled`);
+
+        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        await waitFor( async () => {
+            const isEnabled: boolean = await page.isEnabled(elementIdentifier);
+            return isEnabled === !negate;
+        });
+
+    }
+)
