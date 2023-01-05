@@ -6,5 +6,8 @@
     "male radio button": "[data-id='male-radio-button'] input",
     "movies": "#movies-input",
     "movies list": "ul#movies-input-listbox",
-    "movies list item": "ul#movies-input-listbox li"
+    "movies list item": "ul#movies-input-listbox li",
+    "outlined required": "#outlined-required",
+    "outlined disabled": "#outlined-disabled",
+    "outlined read-only": "#outlined-read-only-input"
 }
