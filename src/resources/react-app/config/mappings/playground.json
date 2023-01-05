@@ -9,5 +9,8 @@
     "movies list item": "ul#movies-input-listbox li",
     "outlined required": "#outlined-required",
     "outlined disabled": "#outlined-disabled",
-    "outlined read-only": "#outlined-read-only-input"
+    "outlined read-only": "#outlined-read-only-input",
+    "outlined error label": "#outlined-error-helper-text-label",
+    "outlined error text": "#outlined-error-helper-text-helper-text",
+    "outlined error input": "#outlined-error-helper-text"
 }

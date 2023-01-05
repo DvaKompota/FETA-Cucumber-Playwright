@@ -25,3 +25,12 @@ Feature: As a user I can interact with autocomplete inputs
         And the "outlined read-only" input should be enabled
         When I fill the "outlined required" input with the "Hello World" text
         Then the "outlined required" input value should be equal to "Hello World"
+
+    @smoke
+    @regression
+    Scenario: As a user I can interact and assert on input validation
+        Given I am on the "home" page
+        When I click the "playground" button
+        Then I am directed to the "playground" page
+        And the "outlined error label" text should be equal to "Error"
+        And the "outlined error text" text should be equal to "Incorrect entry."
