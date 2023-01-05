@@ -49,5 +49,8 @@ export const getValue = async (
     page: Page,
     elementIdentifier: ElementLocator,
 ): Promise<string | null> => {
-    return await page.getAttribute(elementIdentifier, "value")
+    const value = page.$eval<string, HTMLSelectElement>(elementIdentifier, el => {
+        return el.value;
+    });
+    return value;
 };
