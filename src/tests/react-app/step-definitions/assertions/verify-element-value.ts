@@ -32,6 +32,32 @@ Then(
 )
 
 Then(
+    /^the "([^"]*)" ([a-z]* )?text should (not )?be equal to "([^"]*)"$/,
+    async function(
+        this: ScenarioWorld,
+        elementKey: ElementKey, 
+        elementType: string,
+        negate: boolean,
+        expectedText: string 
+    ) {
+        const {
+            screen: { page },
+            globalConfig,
+        } = this;
+
+        console.log(`the ${elementKey} ${elementType?elementType:''}text should ${negate?'not ':''}be equal to "${expectedText}"`);
+
+        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        await waitFor( async () => {
+            const elementText: string | null = await page.textContent(elementIdentifier);
+            return (elementText === expectedText) === !negate;
+        });
+
+    }
+)
+
+Then(
     /^the "([^"]*)" ([a-z]* )?should (not )?contain the value "([^"]*)"$/,
     async function(
         this: ScenarioWorld,
