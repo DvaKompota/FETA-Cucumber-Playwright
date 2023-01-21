@@ -12,5 +12,10 @@
     "outlined read-only": "#outlined-read-only-input",
     "outlined error label": "#outlined-error-helper-text-label",
     "outlined error text": "#outlined-error-helper-text-helper-text",
-    "outlined error input": "#outlined-error-helper-text"
+    "outlined error input": "#outlined-error-helper-text",
+    "blue checkbox": "[data-id='blue-radio-button']",
+    "purple checkbox": "[data-id='purple-radio-button']",
+    "green checkbox": "[data-id='green-radio-button']",
+    "grey checkbox": "[data-id='grey-radio-button']",
+    "red checkbox": "[data-id='red-radio-button']"
 }
