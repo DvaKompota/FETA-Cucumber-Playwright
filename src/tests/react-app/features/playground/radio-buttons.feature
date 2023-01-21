@@ -5,6 +5,7 @@ Feature: As a user I can interact with radio buttons
     Scenario: As a user I can interact and assert on radio buttons
         Given I am on the "home" page
         When I click the "playground" button
+        Then I am directed to the "playground" page
         Then the "playground header" should be displayed
         And the "female radio label" should contain the text "Female"
         And the "female radio label" should not contain the text "Male"
