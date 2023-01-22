@@ -2,7 +2,7 @@ Feature: As a user I can interact with checkboxes
 
     @smoke
     @regression
-    Scenario: As a user I can interact and assert checkboxes
+    Scenario: As a user I can interact and assert on checkboxes
         Given I am on the "home" page
         When I click the "playground" button
         Then I am directed to the "playground" page
