@@ -19,5 +19,6 @@
     "grey checkbox": "[data-id='grey-radio-button']",
     "red checkbox": "[data-id='red-radio-button']",
     "basic": "#basic-iframe",
-    "new tab": "[data-id='new-tab-button']"
+    "new tab": "[data-id='new-tab-button']",
+    "new window": "[data-id='open-window-button']"
 }
