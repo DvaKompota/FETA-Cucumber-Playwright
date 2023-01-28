@@ -45,6 +45,16 @@ export const fillText = async (
     await page.fill(elementIdentifier, textInput)
 };
 
+export const fillTextOnPage = async (
+    pages: Array<Page>,
+    pageIndex: number,
+    elementIdentifier: ElementLocator,
+    textInput: string,
+): Promise<void> => {
+    await pages[pageIndex].focus(elementIdentifier)
+    await pages[pageIndex].fill(elementIdentifier, textInput)
+};
+
 export const selectOptionFromMenu = async (
     page: Page,
     elementIdentifier: ElementLocator,
