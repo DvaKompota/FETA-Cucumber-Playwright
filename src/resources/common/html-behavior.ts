@@ -72,3 +72,11 @@ export const getIframeElement = async (
     const elementIframe = await elementHandle?.contentFrame();
     return elementIframe;
 };
+
+export const fillTextInIframe = async (
+    elementIframe: Frame,
+    elementIdentifier: ElementLocator,
+    textInput: string,
+): Promise<void> => {
+    await elementIframe.fill(elementIdentifier, textInput)
+};
