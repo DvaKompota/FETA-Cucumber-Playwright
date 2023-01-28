@@ -25,3 +25,31 @@ Then(
         });
     }
 )
+
+Then(
+    /^the "([^"]*)" ([a-z]* )?in the "([^"]*)" iframe should (not )?contain the text "([^"]*)"$/,
+    async function(
+        this: ScenarioWorld,
+        elementKey: ElementKey, 
+        elementType: string,
+        iframeName: string,
+        negate: boolean,
+        expectedText: string 
+    ) {
+        const {
+            screen: { page },
+            globalConfig,
+        } = this;
+
+        console.log(`the ${elementKey} ${elementType?elementType:''}in the "${iframeName}" iframe should ${negate?'not ':''}contain the text "${expectedText}"`);
+
+        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+        const iframeIdentifier: string = getElementLocator(page, iframeName, globalConfig);
+        const elementIframe = await getIframeElement(page, iframeIdentifier);
+
+        await waitFor( async () => {
+            const elementText = await elementIframe?.textContent(elementIdentifier);
+            return elementText?.includes(expectedText) === !negate;
+        });
+    }
+)
