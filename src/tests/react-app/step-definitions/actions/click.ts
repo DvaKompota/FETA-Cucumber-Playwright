@@ -6,16 +6,26 @@ import { waitFor } from '../../../../resources/common/wait-for-behavior';
 import { getElementLocator } from '../../../../resources/common/web-element-helper';
 
 When(
-    /^I click the "([^"]*)"( [a-z]*)?$/,
-    async function( this: ScenarioWorld, elementKey: ElementKey, elementType: string ) {
+    /^I click the( ([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th))? "([^"]*)"( [a-z]*)?$/,
+    async function(
+        this: ScenarioWorld,
+        elementPosition: string,
+        elementKey: ElementKey,
+        elementType: string,
+    ) {
         const {
             screen: { page },
             globalConfig,
         } = this;
     
-        console.log(`I click the ${elementKey}${elementType?elementType:''}`);
+        console.log(`I click the ${elementPosition?elementPosition+' ':''}${elementKey}${elementType?elementType:''}`);
 
-        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+        let elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        if (elementPosition) {
+            const elementIndex: number = Number(elementPosition.match(/\d+/)?.join('')) - 1;
+            elementIdentifier += ` >> nth=${elementIndex}`;
+        }
 
         await waitFor( async () => {
             const result = await page.waitForSelector(elementIdentifier, { state: 'visible' });
@@ -29,10 +39,11 @@ When(
 )
 
 When(
-    /^I click the "([^"]*)" ([a-z]* )?containing the "(.*)" text$/,
+    /^I click the( ([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th))? "([^"]*)"( [a-z]*)?containing the "(.*)" text$/,
     async function(
         this: ScenarioWorld,
-        elementKey: ElementKey, 
+        elementPosition: string,
+        elementKey: ElementKey,
         elementType: string,
         elementText: string
     ) {
@@ -40,12 +51,17 @@ When(
             screen: { page },
             globalConfig,
         } = this;
-    
-        console.log(`I click the ${elementKey} ${elementType?elementType:''}containing the "${elementText}" text`);
+
+        console.log(`I click the ${elementPosition?elementPosition+' ':''}${elementKey}${elementType?elementType:''}containing the "${elementText}" text`);
 
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
 
-        const selectorWithText: string = `${elementIdentifier}:has-text("${elementText}")`;
+        let selectorWithText: string = `${elementIdentifier}:has-text("${elementText}")`;
+
+        if (elementPosition) {
+            const elementIndex: number = Number(elementPosition.match(/\d+/)?.join('')) - 1;
+            selectorWithText += ` >> nth=${elementIndex}`;
+        }
 
         await waitFor( async () => {
             const result = await page.waitForSelector(selectorWithText, { state: 'visible' });
@@ -59,10 +75,11 @@ When(
 )
 
 When(
-    /^I click the "([^"]*)" ([a-z]* )?with text equal to "(.*)"$/,
+    /^I click the( ([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th))? "([^"]*)"( [a-z]*)?with text equal to "(.*)"$/,
     async function(
         this: ScenarioWorld,
-        elementKey: ElementKey, 
+        elementPosition: string,
+        elementKey: ElementKey,
         elementType: string,
         elementText: string
     ) {
@@ -70,12 +87,17 @@ When(
             screen: { page },
             globalConfig,
         } = this;
-    
-        console.log(`I click the ${elementKey} ${elementType?elementType:''}with text equal to "${elementText}"`);
+
+        console.log(`I click the ${elementPosition?elementPosition+' ':''}${elementKey}${elementType?elementType:''}with text equal to "${elementText}"`);
 
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
 
-        const selectorWithText: string = `${elementIdentifier}:text-is("${elementText}")`;
+        let selectorWithText: string = `${elementIdentifier}:text-is("${elementText}")`;
+
+        if (elementPosition) {
+            const elementIndex: number = Number(elementPosition.match(/\d+/)?.join('')) - 1;
+            selectorWithText += ` >> nth=${elementIndex}`;
+        }
 
         await waitFor( async () => {
             const result = await page.waitForSelector(selectorWithText, { state: 'visible' });
