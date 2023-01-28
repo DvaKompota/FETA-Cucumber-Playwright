@@ -57,3 +57,32 @@ Then(
 
     }
 )
+
+Then(
+    /^the "([^"]*)" ([a-z]* )?on the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" tab should (not )?contain the text "([^"]*)"$/,
+    async function(
+        this: ScenarioWorld,
+        elementKey: ElementKey, 
+        elementType: string,
+        tabPosition: string,
+        negate: boolean,
+        expectedText: string 
+    ) {
+        const {
+            screen: { page, context },
+            globalConfig,
+        } = this;
+
+        console.log(`the ${elementKey} ${elementType?elementType:''}on the ${tabPosition} tab should ${negate?'not ':''}contain the text "${expectedText}"`);
+
+        const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;
+        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        await waitFor( async () => {
+            let pages = context.pages();
+            const elementText: string | null = await pages[pageIndex].textContent(elementIdentifier);
+            return elementText?.includes(expectedText) === !negate;
+        });
+
+    }
+)
