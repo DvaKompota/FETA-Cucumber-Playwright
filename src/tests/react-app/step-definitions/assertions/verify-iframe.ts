@@ -53,3 +53,32 @@ Then(
         });
     }
 )
+
+Then(
+    /^the "([^"]*)" ([a-z]* )?text in the "([^"]*)" iframe should (not )?be equal to "([^"]*)"$/,
+    async function(
+        this: ScenarioWorld,
+        elementKey: ElementKey, 
+        elementType: string,
+        iframeName: string,
+        negate: boolean,
+        expectedText: string 
+    ) {
+        const {
+            screen: { page },
+            globalConfig,
+        } = this;
+
+        console.log(`the ${elementKey} ${elementType?elementType:''}text in the "${iframeName}" iframe should ${negate?'not ':''}be equal to "${expectedText}"`);
+
+        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+        const iframeIdentifier: string = getElementLocator(page, iframeName, globalConfig);
+        const elementIframe = await getIframeElement(page, iframeIdentifier);
+
+        await waitFor( async () => {
+            const elementText = await elementIframe?.textContent(elementIdentifier);
+            return (elementText === expectedText) === !negate;
+        });
+
+    }
+)
