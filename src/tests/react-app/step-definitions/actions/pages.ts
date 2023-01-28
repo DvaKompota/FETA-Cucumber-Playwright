@@ -6,12 +6,13 @@ import { getElementLocator } from '../../../../resources/common/web-element-help
 import { fillTextOnPage } from '../../../../resources/common/html-behavior';
 
 When(
-    /^I fill the "([^"]*)" ([a-z]* )?on the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" tab with the "(.*)" text$/,
+    /^I fill the "([^"]*)" ([a-z]* )?on the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" (tab|window) with the "(.*)" text$/,
     async function(
         this: ScenarioWorld,
         elementKey: ElementKey, 
         elementType: string,
         tabPosition: string,
+        tabOrWindow: string,
         textInput: string 
     ) {
         const {
@@ -19,7 +20,7 @@ When(
             globalConfig,
         } = this;
     
-        console.log(`I fill the ${elementKey} ${elementType?elementType:''}on the ${tabPosition} tab with the "${textInput}" text`);
+        console.log(`I fill the ${elementKey} ${elementType?elementType:''}on the ${tabPosition} ${tabOrWindow} with the "${textInput}" text`);
 
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
         const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;

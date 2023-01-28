@@ -6,10 +6,11 @@ import { waitFor } from '../../../../resources/common/wait-for-behavior';
 import { getIframeElement } from '../../../../resources/common/html-behavior';
 
 Then(
-    /^the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" tab should (not )?contain the title "(.*)"$/,
+    /^the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" (tab|window) should (not )?contain the title "(.*)"$/,
     async function(
         this: ScenarioWorld,
         tabPosition: string,
+        tabOrWindow: string,
         negate: boolean,
         expectedTitle: string 
     ) {
@@ -17,7 +18,7 @@ Then(
             screen: { page, context },
         } = this;
 
-        console.log(`the ${tabPosition} tab should ${negate ? 'not ' : ''}contain the title "${expectedTitle}"`);
+        console.log(`the ${tabPosition} ${tabOrWindow} should ${negate ? 'not ' : ''}contain the title "${expectedTitle}"`);
 
         const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;
 
@@ -32,11 +33,12 @@ Then(
 )
 
 Then(
-    /^the "([^"]*)" on the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" tab should (not )?be displayed$/,
+    /^the "([^"]*)" on the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" (tab|window) should (not )?be displayed$/,
     async function(
         this: ScenarioWorld,
         elementKey: ElementKey,
         tabPosition: string,
+        tabOrWindow: string,
         negate: boolean,
     ) {
         const {
@@ -44,7 +46,7 @@ Then(
             globalConfig,
         } = this;
 
-        console.log(`the ${elementKey} on the ${tabPosition} tab should ${negate?'not ':''}be displayed`);
+        console.log(`the ${elementKey} on the ${tabPosition} ${tabOrWindow} should ${negate?'not ':''}be displayed`);
 
         const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
@@ -59,12 +61,13 @@ Then(
 )
 
 Then(
-    /^the "([^"]*)" ([a-z]* )?on the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" tab should (not )?contain the text "([^"]*)"$/,
+    /^the "([^"]*)" ([a-z]* )?on the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" (tab|window) should (not )?contain the text "([^"]*)"$/,
     async function(
         this: ScenarioWorld,
         elementKey: ElementKey, 
         elementType: string,
         tabPosition: string,
+        tabOrWindow: string,
         negate: boolean,
         expectedText: string 
     ) {
@@ -73,7 +76,7 @@ Then(
             globalConfig,
         } = this;
 
-        console.log(`the ${elementKey} ${elementType?elementType:''}on the ${tabPosition} tab should ${negate?'not ':''}contain the text "${expectedText}"`);
+        console.log(`the ${elementKey} ${elementType?elementType:''}on the ${tabPosition} ${tabOrWindow} should ${negate?'not ':''}contain the text "${expectedText}"`);
 
         const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
@@ -88,12 +91,13 @@ Then(
 )
 
 Then(
-    /^the "([^"]*)" ([a-z]* )?text on the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" tab should (not )?be equal to "([^"]*)"$/,
+    /^the "([^"]*)" ([a-z]* )?text on the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" (tab|window) should (not )?be equal to "([^"]*)"$/,
     async function(
         this: ScenarioWorld,
         elementKey: ElementKey, 
         elementType: string,
         tabPosition: string,
+        tabOrWindow: string,
         negate: boolean,
         expectedText: string 
     ) {
@@ -102,7 +106,7 @@ Then(
             globalConfig,
         } = this;
 
-        console.log(`the ${elementKey} ${elementType?elementType:''}on the ${tabPosition} tab should ${negate?'not ':''}contain the text "${expectedText}"`);
+        console.log(`the ${elementKey} ${elementType?elementType:''}on the ${tabPosition} ${tabOrWindow} should ${negate?'not ':''}contain the text "${expectedText}"`);
 
         const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
