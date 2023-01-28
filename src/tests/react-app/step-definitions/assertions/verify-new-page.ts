@@ -20,7 +20,7 @@ Then(
 
         console.log(`the ${tabPosition} ${tabOrWindow} should ${negate ? 'not ' : ''}contain the title "${expectedTitle}"`);
 
-        const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;
+        const pageIndex: number = Number(tabPosition.match(/\d+/)?.join('')) - 1;
 
         await page.waitForTimeout(1000)
 
@@ -48,7 +48,7 @@ Then(
 
         console.log(`the ${elementKey} on the ${tabPosition} ${tabOrWindow} should ${negate?'not ':''}be displayed`);
 
-        const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;
+        const pageIndex: number = Number(tabPosition.match(/\d+/)?.join('')) - 1;
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
 
         await waitFor( async () => {
@@ -78,7 +78,7 @@ Then(
 
         console.log(`the ${elementKey} ${elementType?elementType:''}on the ${tabPosition} ${tabOrWindow} should ${negate?'not ':''}contain the text "${expectedText}"`);
 
-        const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;
+        const pageIndex: number = Number(tabPosition.match(/\d+/)?.join('')) - 1;
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
 
         await waitFor( async () => {
@@ -108,7 +108,7 @@ Then(
 
         console.log(`the ${elementKey} ${elementType?elementType:''}on the ${tabPosition} ${tabOrWindow} should ${negate?'not ':''}contain the text "${expectedText}"`);
 
-        const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;
+        const pageIndex: number = Number(tabPosition.match(/\d+/)?.join('')) - 1;
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
 
         await waitFor( async () => {

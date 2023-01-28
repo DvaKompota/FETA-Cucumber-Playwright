@@ -23,7 +23,7 @@ When(
         console.log(`I fill the ${elementKey} ${elementType?elementType:''}on the ${tabPosition} ${tabOrWindow} with the "${textInput}" text`);
 
         const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
-        const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;
+        const pageIndex: number = Number(tabPosition.match(/\d+/)?.join('')) - 1;
 
         await waitFor(async () => {
             let pages = context.pages();
