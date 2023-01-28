@@ -1,4 +1,4 @@
-import { Page } from 'playwright';
+import { Frame, Page } from 'playwright';
 import { ElementLocator} from '../../global-config';
 
 export const clickElement = async (
@@ -61,4 +61,14 @@ export const getValue = async (
         return el.value;
     });
     return value;
+};
+
+export const getIframeElement = async (
+    page: Page,
+    iframeIdentifier: ElementLocator,
+): Promise<Frame | undefined | null> => {
+    page.waitForSelector(iframeIdentifier);
+    const elementHandle = await page.$(iframeIdentifier);
+    const elementIframe = await elementHandle?.contentFrame();
+    return elementIframe;
 };
