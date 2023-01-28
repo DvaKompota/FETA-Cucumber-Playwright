@@ -1,8 +1,8 @@
 import { Given } from '@cucumber/cucumber'
-import { PageId } from '../../../global-config'
-import { ScenarioWorld } from '../setup/world';
-import { navigateToPage, currentPathMatchesPageId } from '../../../resources/common/navigation-behavior'
-import { waitFor } from '../../../resources/common/wait-for-behavior';
+import { PageId } from '../../../../global-config'
+import { ScenarioWorld } from '../../setup/world';
+import { navigateToPage, currentPathMatchesPageId } from '../../../../resources/common/navigation-behavior'
+import { waitFor } from '../../../../resources/common/wait-for-behavior';
 
 Given(
     /^I am on the "([^"]*)" page$/,

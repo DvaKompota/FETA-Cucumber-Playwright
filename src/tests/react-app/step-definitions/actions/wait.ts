@@ -1,5 +1,5 @@
 import { When } from '@cucumber/cucumber'
-import { ScenarioWorld } from '../setup/world';
+import { ScenarioWorld } from '../../setup/world';
 
 When(
     /^I wait for "([0-9]*)" (milliseconds?|seconds?|minutes?)$/,

@@ -1,9 +1,9 @@
 import { When } from '@cucumber/cucumber'
-import { ElementKey } from '../../../global-config'
-import { ScenarioWorld } from '../setup/world';
-import { waitFor } from '../../../resources/common/wait-for-behavior';
-import { getElementLocator } from '../../../resources/common/web-element-helper';
-import { getIframeElement, fillTextInIframe } from '../../../resources/common/html-behavior';
+import { ElementKey } from '../../../../global-config'
+import { ScenarioWorld } from '../../setup/world';
+import { waitFor } from '../../../../resources/common/wait-for-behavior';
+import { getElementLocator } from '../../../../resources/common/web-element-helper';
+import { getIframeElement, fillTextInIframe } from '../../../../resources/common/html-behavior';
 
 When(
     /^I fill the "([^"]*)" ([a-z]* )?in the "([^"]*)" iframe with the "(.*)" text$/,

@@ -1,9 +1,9 @@
 import { When } from '@cucumber/cucumber'
-import { ElementKey } from '../../../global-config'
-import { ScenarioWorld } from '../setup/world';
-import { waitFor } from '../../../resources/common/wait-for-behavior';
-import { getElementLocator } from '../../../resources/common/web-element-helper';
-import { selectOptionFromMenu } from '../../../resources/common/html-behavior';
+import { ElementKey } from '../../../../global-config'
+import { ScenarioWorld } from '../../setup/world';
+import { waitFor } from '../../../../resources/common/wait-for-behavior';
+import { getElementLocator } from '../../../../resources/common/web-element-helper';
+import { selectOptionFromMenu } from '../../../../resources/common/html-behavior';
 
 When(
     /^I select the "(.*)" option from the "([^"]*)" menu$/,

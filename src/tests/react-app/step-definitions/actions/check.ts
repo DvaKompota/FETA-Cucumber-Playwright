@@ -1,9 +1,9 @@
 import { When } from '@cucumber/cucumber'
-import { ElementKey } from '../../../global-config'
-import { ScenarioWorld } from '../setup/world';
-import { checkElement, uncheckElement } from '../../../resources/common/html-behavior';
-import { waitFor } from '../../../resources/common/wait-for-behavior';
-import { getElementLocator } from '../../../resources/common/web-element-helper';
+import { ElementKey } from '../../../../global-config'
+import { ScenarioWorld } from '../../setup/world';
+import { checkElement, uncheckElement } from '../../../../resources/common/html-behavior';
+import { waitFor } from '../../../../resources/common/wait-for-behavior';
+import { getElementLocator } from '../../../../resources/common/web-element-helper';
 
 When(
     /^I (check|uncheck) the "([^"]*)"$/,
