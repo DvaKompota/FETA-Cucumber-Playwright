@@ -19,10 +19,10 @@ Feature: As a user I expect to be able to create contacts
         When I fill the "search contacts" input with the "Carl Proctor" text
         Then the "contact card" should be displayed
         And the "name label" should contain the text "Name:"
-        And the "name" should contain the text "Carl Proctor"
+        And the "name" text should be equal to "Carl Proctor"
         And the "gender label" should contain the text "Gender:"
-        And the "gender" should contain the text "Male"
+        And the "gender" text should be equal to "Male"
         And the "address label" should contain the text "Address:"
-        And the "address" should contain the text "621 Cowan Ave, Los Angeles"
+        And the "address" text should be equal to "621 Cowan Ave, Los Angeles"
         And the "edit button" should be displayed
         And the "delete button" should be displayed
