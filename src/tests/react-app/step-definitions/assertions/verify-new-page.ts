@@ -7,14 +7,19 @@ import { getIframeElement } from '../../../../resources/common/html-behavior';
 
 Then(
     /^the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" tab should (not )?contain the title "(.*)"$/,
-    async function (this: ScenarioWorld, elementPosition: string, negate: boolean, expectedTitle: string ) {
+    async function(
+        this: ScenarioWorld,
+        tabPosition: string,
+        negate: boolean,
+        expectedTitle: string 
+    ) {
         const {
             screen: { page, context },
         } = this;
 
-        console.log(`the ${elementPosition} tab should ${negate ? 'not ' : ''}contain the title "${expectedTitle}"`);
+        console.log(`the ${tabPosition} tab should ${negate ? 'not ' : ''}contain the title "${expectedTitle}"`);
 
-        const pageIndex: number = Number(elementPosition.match(/\d/g)?.join('')) - 1;
+        const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;
 
         await page.waitForTimeout(1000)
 
@@ -23,5 +28,32 @@ Then(
             const pageTitle = await pages[pageIndex].title()
             return pageTitle?.includes(expectedTitle) === !negate;
         });
+    }
+)
+
+Then(
+    /^the "([^"]*)" on the "([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)" tab should (not )?be displayed$/,
+    async function(
+        this: ScenarioWorld,
+        elementKey: ElementKey,
+        tabPosition: string,
+        negate: boolean,
+    ) {
+        const {
+            screen: { page, context },
+            globalConfig,
+        } = this;
+
+        console.log(`the ${elementKey} on the ${tabPosition} tab should ${negate?'not ':''}be displayed`);
+
+        const pageIndex: number = Number(tabPosition.match(/\d/g)?.join('')) - 1;
+        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        await waitFor( async () => {
+            let pages = context.pages();
+            const isElementVisible: boolean = (await pages[pageIndex].$(elementIdentifier)) != null;
+            return isElementVisible === !negate;
+        });
+
     }
 )
