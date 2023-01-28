@@ -17,5 +17,6 @@
     "purple checkbox": "[data-id='purple-radio-button']",
     "green checkbox": "[data-id='green-radio-button']",
     "grey checkbox": "[data-id='grey-radio-button']",
-    "red checkbox": "[data-id='red-radio-button']"
+    "red checkbox": "[data-id='red-radio-button']",
+    "basic": "#basic-iframe"
 }
