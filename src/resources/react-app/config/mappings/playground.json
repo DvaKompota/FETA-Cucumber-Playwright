@@ -20,5 +20,9 @@
     "red checkbox": "[data-id='red-radio-button']",
     "basic": "#basic-iframe",
     "new tab": "[data-id='new-tab-button']",
-    "new window": "[data-id='open-window-button']"
+    "new window": "[data-id='open-window-button']",
+    "primary button": "[data-id='primary-button']",
+    "secondary button": "[data-id='secondary-button']",
+    "third button": "[data-id='third-button']",
+    "index button": "[data-id='my-button']"
 }
