@@ -17,7 +17,7 @@ When(
             screen: { page },
             globalConfig,
         } = this;
-    
+
         console.log(`I click the ${elementPosition?elementPosition+' ':''}${elementKey}${elementType?elementType:''}`);
 
         let elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);

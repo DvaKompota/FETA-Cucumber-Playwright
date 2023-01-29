@@ -6,9 +6,10 @@ import { waitFor } from '../../../../resources/common/wait-for-behavior';
 import { getValue } from '../../../../resources/common/html-behavior';
 
 Then(
-    /^the "([^"]*)" ([a-z]* )?should (not )?contain the text "([^"]*)"$/,
+    /^the( ([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th))? "([^"]*)" ([a-z]* )?should (not )?contain the text "([^"]*)"$/,
     async function(
         this: ScenarioWorld,
+        elementPosition: string,
         elementKey: ElementKey, 
         elementType: string,
         negate: boolean,
@@ -19,9 +20,14 @@ Then(
             globalConfig,
         } = this;
 
-        console.log(`the ${elementKey} ${elementType?elementType:''}should ${negate?'not ':''}contain the text "${expectedText}"`);
+        console.log(`the ${elementPosition?elementPosition+' ':''}${elementKey} ${elementType?elementType:''}should ${negate?'not ':''}contain the text "${expectedText}"`);
 
-        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+        let elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        if (elementPosition) {
+            const elementIndex: number = Number(elementPosition.match(/\d+/)?.join('')) - 1;
+            elementIdentifier += ` >> nth=${elementIndex}`;
+        }
 
         await waitFor( async () => {
             const elementText: string | null = await page.textContent(elementIdentifier);
@@ -32,9 +38,10 @@ Then(
 )
 
 Then(
-    /^the "([^"]*)" ([a-z]* )?text should (not )?be equal to "([^"]*)"$/,
+    /^the( ([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th))? "([^"]*)" ([a-z]* )?text should (not )?be equal to "([^"]*)"$/,
     async function(
         this: ScenarioWorld,
+        elementPosition: string,
         elementKey: ElementKey, 
         elementType: string,
         negate: boolean,
@@ -45,9 +52,14 @@ Then(
             globalConfig,
         } = this;
 
-        console.log(`the ${elementKey} ${elementType?elementType:''}text should ${negate?'not ':''}be equal to "${expectedText}"`);
+        console.log(`the ${elementPosition?elementPosition+' ':''}${elementKey} ${elementType?elementType:''}text should ${negate?'not ':''}be equal to "${expectedText}"`);
 
-        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+        let elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        if (elementPosition) {
+            const elementIndex: number = Number(elementPosition.match(/\d+/)?.join('')) - 1;
+            elementIdentifier += ` >> nth=${elementIndex}`;
+        }
 
         await waitFor( async () => {
             const elementText: string | null = await page.textContent(elementIdentifier);
@@ -58,9 +70,10 @@ Then(
 )
 
 Then(
-    /^the "([^"]*)" ([a-z]* )?should (not )?contain the value "([^"]*)"$/,
+    /^the( ([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th))? "([^"]*)" ([a-z]* )?should (not )?contain the value "([^"]*)"$/,
     async function(
         this: ScenarioWorld,
+        elementPosition: string,
         elementKey: ElementKey, 
         elementType: string,
         negate: boolean,
@@ -71,9 +84,14 @@ Then(
             globalConfig,
         } = this;
 
-        console.log(`the ${elementKey} ${elementType?elementType:''}should ${negate?'not ':''}contain the value "${expectedValue}"`);
+        console.log(`the ${elementPosition?elementPosition+' ':''}${elementKey} ${elementType?elementType:''}should ${negate?'not ':''}contain the value "${expectedValue}"`);
 
-        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+        let elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        if (elementPosition) {
+            const elementIndex: number = Number(elementPosition.match(/\d+/)?.join('')) - 1;
+            elementIdentifier += ` >> nth=${elementIndex}`;
+        }
 
         await waitFor( async () => {
             const elementAttribute: string | null = await getValue(page, elementIdentifier);
@@ -84,9 +102,10 @@ Then(
 )
 
 Then(
-    /^the "([^"]*)" ([a-z]* )?value should (not )?be equal to "([^"]*)"$/,
+    /^the( ([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th))? "([^"]*)" ([a-z]* )?value should (not )?be equal to "([^"]*)"$/,
     async function(
         this: ScenarioWorld,
+        elementPosition: string,
         elementKey: ElementKey, 
         elementType: string,
         negate: boolean,
@@ -97,9 +116,14 @@ Then(
             globalConfig,
         } = this;
 
-        console.log(`the ${elementKey} ${elementType?elementType:''}value should ${negate?'not ':''}be equal to "${expectedValue}"`);
+        console.log(`the ${elementPosition?elementPosition+' ':''}${elementKey} ${elementType?elementType:''}value should ${negate?'not ':''}be equal to "${expectedValue}"`);
 
-        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+        let elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        if (elementPosition) {
+            const elementIndex: number = Number(elementPosition.match(/\d+/)?.join('')) - 1;
+            elementIdentifier += ` >> nth=${elementIndex}`;
+        }
 
         await waitFor( async () => {
             const elementAttribute: string | null = await getValue(page, elementIdentifier);
@@ -110,9 +134,10 @@ Then(
 )
 
 Then(
-    /^the "([^"]*)" ([a-z]* )?should (not )?be enabled$/,
+    /^the( ([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th))? "([^"]*)" ([a-z]* )?should (not )?be enabled$/,
     async function(
         this: ScenarioWorld,
+        elementPosition: string,
         elementKey: ElementKey, 
         elementType: string,
         negate: boolean 
@@ -122,9 +147,14 @@ Then(
             globalConfig,
         } = this;
 
-        console.log(`the ${elementKey} ${elementType?elementType:''}should ${negate?'not ':''}be enabled`);
+        console.log(`the ${elementPosition?elementPosition+' ':''}${elementKey} ${elementType?elementType:''}should ${negate?'not ':''}be enabled`);
 
-        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+        let elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        if (elementPosition) {
+            const elementIndex: number = Number(elementPosition.match(/\d+/)?.join('')) - 1;
+            elementIdentifier += ` >> nth=${elementIndex}`;
+        }
 
         await waitFor( async () => {
             const isEnabled: boolean = await page.isEnabled(elementIdentifier);
