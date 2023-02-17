@@ -6,16 +6,29 @@ import { waitFor } from '../../../../resources/common/wait-for-behavior';
 import { getIframeElement } from '../../../../resources/common/html-behavior';
 
 Then(
-    /^the "([^"]*)" in the "([^"]*)" iframe should (not )?be displayed$/,
-    async function (this: ScenarioWorld, elementKey: ElementKey, iframeName: string, negate: boolean) {
+    /^the( ([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th))? "([^"]*)"( [a-z]*)?in the "([^"]*)"(?: iframe)? should (not )?be displayed$/,
+    async function(
+        this: ScenarioWorld,
+        elementPosition: string,
+        elementKey: ElementKey, 
+        elementType: string,
+        iframeName: string,
+        negate: boolean,
+    ) {
         const {
             screen: { page },
             globalConfig,
         } = this;
 
-        console.log(`the ${elementKey} in the "${iframeName}" iframe should ${negate ? 'not ' : ''}be displayed`);
+        console.log(`The ${elementPosition?elementPosition+' ':''}${elementKey}${elementType?elementType:''}in the "${iframeName}" iframe should ${negate ? 'not ' : ''}be displayed`);
 
-        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+        let elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        if (elementPosition) {
+            const elementIndex: number = Number(elementPosition.match(/\d+/)?.join('')) - 1;
+            elementIdentifier += ` >> nth=${elementIndex}`;
+        }
+
         const iframeIdentifier: string = getElementLocator(page, iframeName, globalConfig);
         const elementIframe = await getIframeElement(page, iframeIdentifier);
 
@@ -27,9 +40,10 @@ Then(
 )
 
 Then(
-    /^the "([^"]*)" ([a-z]* )?in the "([^"]*)" iframe should (not )?contain the text "([^"]*)"$/,
+    /^the( ([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th))? "([^"]*)"( [a-z]*)?in the "([^"]*)"(?: iframe)? should (not )?contain the text "([^"]*)"$/,
     async function(
         this: ScenarioWorld,
+        elementPosition: string,
         elementKey: ElementKey, 
         elementType: string,
         iframeName: string,
@@ -41,9 +55,15 @@ Then(
             globalConfig,
         } = this;
 
-        console.log(`the ${elementKey} ${elementType?elementType:''}in the "${iframeName}" iframe should ${negate?'not ':''}contain the text "${expectedText}"`);
+        console.log(`The ${elementPosition?elementPosition+' ':''}${elementKey}${elementType?elementType:''}in the "${iframeName}" iframe should ${negate?'not ':''}contain the text "${expectedText}"`);
 
-        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+        let elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        if (elementPosition) {
+            const elementIndex: number = Number(elementPosition.match(/\d+/)?.join('')) - 1;
+            elementIdentifier += ` >> nth=${elementIndex}`;
+        }
+
         const iframeIdentifier: string = getElementLocator(page, iframeName, globalConfig);
         const elementIframe = await getIframeElement(page, iframeIdentifier);
 
@@ -55,9 +75,10 @@ Then(
 )
 
 Then(
-    /^the "([^"]*)" ([a-z]* )?text in the "([^"]*)" iframe should (not )?be equal to "([^"]*)"$/,
+    /^the( ([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th))? "([^"]*)"( [a-z]*)?text in the "([^"]*)"(?: iframe)? should (not )?be equal to "([^"]*)"$/,
     async function(
         this: ScenarioWorld,
+        elementPosition: string,
         elementKey: ElementKey, 
         elementType: string,
         iframeName: string,
@@ -69,9 +90,15 @@ Then(
             globalConfig,
         } = this;
 
-        console.log(`the ${elementKey} ${elementType?elementType:''}text in the "${iframeName}" iframe should ${negate?'not ':''}be equal to "${expectedText}"`);
+        console.log(`The ${elementPosition?elementPosition+' ':''}${elementKey}${elementType?elementType:''}text in the "${iframeName}" iframe should ${negate?'not ':''}be equal to "${expectedText}"`);
 
-        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+        let elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        if (elementPosition) {
+            const elementIndex: number = Number(elementPosition.match(/\d+/)?.join('')) - 1;
+            elementIdentifier += ` >> nth=${elementIndex}`;
+        }
+
         const iframeIdentifier: string = getElementLocator(page, iframeName, globalConfig);
         const elementIframe = await getIframeElement(page, iframeIdentifier);
 
