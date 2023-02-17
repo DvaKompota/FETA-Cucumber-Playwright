@@ -18,7 +18,7 @@
     "green checkbox": "[data-id='green-radio-button']",
     "grey checkbox": "[data-id='grey-radio-button']",
     "red checkbox": "[data-id='red-radio-button']",
-    "basic": "#basic-iframe",
+    "basic iframe": "#basic-iframe",
     "new tab": "[data-id='new-tab-button']",
     "new window": "[data-id='open-window-button']",
     "primary button": "[data-id='primary-button']",
