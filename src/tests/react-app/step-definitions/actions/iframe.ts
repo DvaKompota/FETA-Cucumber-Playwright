@@ -6,9 +6,10 @@ import { getElementLocator } from '../../../../resources/common/web-element-help
 import { getIframeElement, fillTextInIframe } from '../../../../resources/common/html-behavior';
 
 When(
-    /^I fill the "([^"]*)" ([a-z]* )?in the "([^"]*)" iframe with the "(.*)" text$/,
+    /^I fill the( ([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th))? "([^"]*)"( [a-z]*)? in the "([^"]*)"(?: iframe)? with the "(.*)" text$/,
     async function(
         this: ScenarioWorld,
+        elementPosition: string,
         elementKey: ElementKey, 
         elementType: string,
         iframeName: string,
@@ -18,10 +19,16 @@ When(
             screen: { page },
             globalConfig,
         } = this;
-    
-        console.log(`I fill the ${elementKey} ${elementType?elementType:''}in the "${iframeName}" iframe with the "${textInput}" text`);
 
-        const elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+        console.log(`I fill the ${elementPosition?elementPosition+' ':''}${elementKey}${elementType?elementType:''} in the "${iframeName}" iframe with the "${textInput}" text`);
+
+        let elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
+
+        if (elementPosition) {
+            const elementIndex: number = Number(elementPosition.match(/\d+/)?.join('')) - 1;
+            elementIdentifier += ` >> nth=${elementIndex}`;
+        }
+
         const iframeIdentifier: string = getElementLocator(page, iframeName, globalConfig);
         const elementIframe = await getIframeElement(page, iframeIdentifier);
 
