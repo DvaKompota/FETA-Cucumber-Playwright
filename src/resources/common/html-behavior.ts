@@ -90,3 +90,22 @@ export const fillTextInIframe = async (
 ): Promise<void> => {
     await elementIframe.fill(elementIdentifier, textInput)
 };
+
+export const getTableAsArray = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+): Promise<(string | null)[][]> => {
+    await page.waitForSelector(elementIdentifier);
+
+    const tableAsArray: (string | null)[][] = await page
+        .locator(elementIdentifier)
+        .locator("tbody tr")
+        .evaluateAll((rows: HTMLElement[]) => {
+            return rows.map(row => {
+                const cells = row.querySelectorAll('td')
+                return Array.from(cells).map(cell => cell.textContent)
+            });
+        });
+
+    return tableAsArray
+};
