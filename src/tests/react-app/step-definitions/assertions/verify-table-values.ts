@@ -53,7 +53,7 @@ Then(
             globalConfig,
         } = this;
 
-        console.log(`the ${elementPosition?elementPosition+' ':''}${elementKey} should ${negate?'not ':''}be equal to the provided table`);
+        console.log(`the ${elementPosition?elementPosition+' ':''}${elementKey} should ${negate?'not ':''}be equal to the ${fileName} file`);
 
         let elementIdentifier: string = getElementLocator(page, elementKey, globalConfig);
 
