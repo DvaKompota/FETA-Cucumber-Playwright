@@ -25,5 +25,9 @@
     "secondary button": "[data-id='secondary-button']",
     "third button": "[data-id='third-button']",
     "index button": "[data-id='my-button']",
-    "basic table": "[data-id='basic-table']"
+    "basic table": "[data-id='basic-table']",
+    "switch one": "[data-id='switch-one']",
+    "mui switch one": "//*[@data-id='switch-one']/..",
+    "switch two": "[data-id='switch-two']",
+    "mui switch two": "//*[@data-id='switch-two']/.."
 }
