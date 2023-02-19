@@ -73,6 +73,16 @@ export const getValue = async (
     return value;
 };
 
+export const getElementClass = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+): Promise<string> => {
+    const elementClass = page.$eval<string, HTMLSelectElement>(elementIdentifier, el => {
+        return el.className;
+    });
+    return elementClass;
+};
+
 export const getIframeElement = async (
     page: Page,
     iframeIdentifier: ElementLocator,
