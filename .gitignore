@@ -1,6 +1,7 @@
 /node_modules
 
 # Playwright
+/playwright-report/
 /reports/
 /dist/
 /playwright/.cache/
