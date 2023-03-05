@@ -29,5 +29,6 @@
     "switch one": "[data-id='switch-one']",
     "mui switch one": "//*[@data-id='switch-one']/..",
     "switch two": "[data-id='switch-two']",
-    "mui switch two": "//*[@data-id='switch-two']/.."
+    "mui switch two": "//*[@data-id='switch-two']/..",
+    "alert button": "[data-id='browser-alert']"
 }
